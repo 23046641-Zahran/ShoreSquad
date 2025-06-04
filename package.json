@@ -1,12 +1,22 @@
 {
   "name": "shoresquad",
   "version": "1.0.0",
+  "description": "A community-driven beach cleanup platform",
   "main": "index.js",
   "scripts": {
+    "start": "live-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "beach-cleanup",
+    "community",
+    "environmental",
+    "weather",
+    "maps"
+  ],
+  "author": "ShoreSquad Team",
   "license": "ISC",
-  "description": ""
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  }
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join ShoreSquad to organize and participate in beach cleanups. Track weather, find events, and connect with fellow beach lovers!">
+    <title>ShoreSquad - Beach Cleanup Community</title>    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">
+            <h1>ShoreSquad</h1>
+        </div>
+        <button class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
+        <div class="nav-links">
+            <a href="#map" aria-label="Find beach cleanups">Find Cleanups</a>
+            <a href="#weather" aria-label="Check beach weather">Weather</a>
+            <a href="#community" aria-label="View community updates">Community</a>
+            <button class="cta-button" aria-label="Join our squad">Join Squad</button>
+        </div>
+    </nav>
+
+    <header class="hero" role="banner">
+        <div class="hero-content">
+            <h1>Rally Your Crew for Cleaner Shores</h1>
+            <p>Join the movement to keep our beaches clean and vibrant</p>
+            <button class="cta-button" aria-label="Find next cleanup event">Find Next Cleanup</button>
+        </div>
+    </header>
+
+    <main role="main">
+        <section id="map" class="map-section" aria-labelledby="map-heading">
+            <h2 id="map-heading">Beach Cleanup Map</h2>            <div id="cleanup-map" class="map-container" role="region" aria-label="Interactive map of beach cleanups">
+                <!-- Map will be loaded by JavaScript -->
+            </div>
+        </section>
+
+        <section id="weather" class="weather-section" aria-labelledby="weather-heading">
+            <h2 id="weather-heading">Beach Weather</h2>
+            <div class="weather-container" role="region" aria-label="Current beach weather conditions">
+                <!-- Weather info will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <section id="community" class="community-section" aria-labelledby="community-heading">
+            <h2 id="community-heading">Squad Updates</h2>
+            <div class="community-grid" role="feed" aria-label="Community updates">
+                <!-- Community updates will be inserted here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ShoreSquad</h3>
+                <p>Making beach cleanup fun and connected</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links" role="navigation" aria-label="Social media links">
+                    <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShoreSquad. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
