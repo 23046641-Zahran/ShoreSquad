@@ -69,16 +69,51 @@ async function loadWeather() {
     if (!weatherContainer) return;
 
     try {
-        // TODO: Implement weather API integration
-        // For now, show placeholder weather data
+        // Add loading state
+        weatherContainer.innerHTML = '<div class="loading">Loading weather data...</div>';
+        
+        // Fetch 4-day forecast from data.gov.sg API
+        const response = await fetch('https://api.data.gov.sg/v1/environment/4-day-weather-forecast');
+        const data = await response.json();
+        
+        if (!data.items || !data.items[0] || !data.items[0].forecasts) {
+            throw new Error('Invalid weather data format');
+        }
+
+        const forecasts = data.items[0].forecasts;
+        
+        // Create weather cards for each day
         weatherContainer.innerHTML = `
-            <div class="weather-card" role="article">
-                <h3>Today's Beach Weather</h3>
-                <div class="weather-info">
-                    <p><span aria-label="Temperature">🌡️ 75°F</span></p>
-                    <p><span aria-label="Wave height">🌊 2-3 ft</span></p>
-                    <p><span aria-label="Wind speed">💨 8 mph</span></p>
-                </div>
+            <div class="weather-forecast-grid">
+                ${forecasts.map((forecast, index) => {
+                    const date = new Date(forecast.date);
+                    const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+                    const formattedDate = date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+                    
+                    return `
+                        <div class="weather-card" role="article">
+                            <h3>${index === 0 ? 'Today' : dayName}</h3>
+                            <p class="date">${formattedDate}</p>
+                            <div class="weather-info">
+                                <p class="forecast-detail">
+                                    <span class="weather-icon" aria-hidden="true">
+                                        ${getWeatherIcon(forecast.forecast)}
+                                    </span>
+                                    <span class="forecast-text">${forecast.forecast}</span>
+                                </p>
+                                <p class="temperature">
+                                    <span aria-label="Temperature range">🌡️ ${forecast.temperature.low}-${forecast.temperature.high}°C</span>
+                                </p>
+                                <p class="wind">
+                                    <span aria-label="Wind speed and direction">💨 ${forecast.wind.speed.low}-${forecast.wind.speed.high} km/h</span>
+                                </p>
+                                <p class="humidity">
+                                    <span aria-label="Relative humidity range">💧 ${forecast.relative_humidity.low}-${forecast.relative_humidity.high}%</span>
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
             </div>
         `;
     } catch (error) {
@@ -89,6 +124,23 @@ async function loadWeather() {
             </div>
         `;
     }
+}
+
+// Helper function to get weather icons
+function getWeatherIcon(forecast) {
+    const iconMap = {
+        'Sunny': '☀️',
+        'Partly Cloudy': '⛅',
+        'Cloudy': '☁️',
+        'Light Rain': '🌦️',
+        'Moderate Rain': '🌧️',
+        'Heavy Rain': '⛈️',
+        'Light Showers': '🌦️',
+        'Showers': '🌧️',
+        'Heavy Showers': '⛈️',
+        'Thundery Showers': '⛈️'
+    };
+    return iconMap[forecast] || '🌤️';
 }
 
 // Community updates loading function
